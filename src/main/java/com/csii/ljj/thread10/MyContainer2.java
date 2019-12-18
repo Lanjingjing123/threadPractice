@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 功能：一个线程thread-1添加元素，另一个线程thread-2在容器存储达到5就结束该线程
- *  不使用volatile，List 不可见，thread-2 不能正常停止
- *
+ * 功能：一个线程（thread-1）添加元素，另一个线程(thread-2)在容器存储达到5就结束该线程
+ * list 使用volatile,则修改是读可见的，thread-2会停止
  */
-public class MyContainer {
-    /*volatile*/ List list = new ArrayList();
+public class MyContainer2 {
+    volatile List list = new ArrayList();
 
     // 添加元素
     public void add(Object o){
@@ -18,17 +17,17 @@ public class MyContainer {
 
     // 获得容器的大小
     public int size(){
-     return list.size();
+        return list.size();
     }
 
     public static void main(String[] args) {
-        MyContainer container = new MyContainer();
+        MyContainer2 container2 = new MyContainer2();
 
 
         new Thread(()->{
             System.out.println("thread-2 启动");
             while (true){
-                if (container.size()==5){
+                if (container2.size()==5){
                     break;
                 }
             }
@@ -38,7 +37,7 @@ public class MyContainer {
         new Thread(()->{
             System.out.println("thread-1 启动");
             for (int i=0 ; i<10; i++){
-                container.add(new Object());
+                container2.add(new Object());
                 System.out.println("add "+i);
                 try {
                     Thread.sleep(1000);
@@ -47,7 +46,6 @@ public class MyContainer {
                 }
             }
         },"thread-1").start();
-
 
 
     }
