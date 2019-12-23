@@ -12,7 +12,8 @@ public class MyContainer1 {
      * @param o
      */
     public synchronized void put(Object o){
-        while (lists.size() == MAX_SIZE){
+
+        while (lists.size() == MAX_SIZE){//不能使用if的原因是：当线程被唤醒的时候是接着往下执行，不会再检查一遍lises.size()==MAX_SIZE，而while会在检查一遍
             try {
                 this.wait();
             } catch (InterruptedException e) {
