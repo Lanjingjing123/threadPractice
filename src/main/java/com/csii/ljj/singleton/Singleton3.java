@@ -13,7 +13,7 @@ public class Singleton3 {
     private Singleton3(){}
 
     // 不加 synchronized 会出现多线程不安全问题，会产生多个实例，而不是单例
-    public synchronized static Singleton3 get(){
+    public /*synchronized*/ static Singleton3 get(){
         if (o == null){
             synchronized (Singleton3.class){ // 静态方法,Class对象加锁
                 if ( o == null){
@@ -35,7 +35,7 @@ public class Singleton3 {
     public  static void main(String[] args) {
 
         Singleton3 singleton3 =new Singleton3();
-        for (int i=0;i<100;i++){
+        for (int i=0;i<1000;i++){
             new Thread(()->{
                 System.out.println(Thread.currentThread().getName()+":"+singleton3.get());
             },"thread-"+i).start();

@@ -1,0 +1,11 @@
+1.Executor 是顶层接口，只有一个方法 execute()
+2.ExecutorService sumbit(Callable/Runnable)
+3.Executors 工具类，用于操作Executor，ExecutorService，ScheduledExecutorService，ThreadFactory
+4.ThreadPool
+5.Future
+
+
+fixed cached single scheduled workstealing forkjoin
+
+
+ThreadPoolExecutor  —— 所有线程池都是new一个ThreadPoolExecutor
