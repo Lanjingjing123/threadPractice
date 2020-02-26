@@ -9,6 +9,14 @@ public class T06_FutureTask {
             return 1000;
         });// new一个Callable内部类，重写call方法 new Callable (){ Int call()}
 
+        Future<Integer> task2 = new FutureTask<Integer>(new Callable<Integer>() {
+            @Override
+            public Integer call() throws Exception {
+                TimeUnit.MILLISECONDS.sleep(500);
+                return 1000;
+        }
+        });
+
         new Thread(task).start();// 启动一个线程，执行任务
         System.out.println(task.get());// 阻塞，拿到结果才会往下走
         ExecutorService service = Executors.newFixedThreadPool(5);
