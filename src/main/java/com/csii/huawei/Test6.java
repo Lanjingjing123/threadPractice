@@ -21,10 +21,10 @@ public class Test6 {
             // 用于存储 被除数
 
             if (isSushu(inputNum)){
-                System.out.println(inputNum);
+                System.out.println(inputNum+" ");
                 continue;
             }
-            System.out.println(isSushu(inputNum));
+//            System.out.println(isSushu(inputNum));
             Map<String,Long> map = new HashMap<>();
             map.put("number",inputNum);
             map.put("flag",-1L);
